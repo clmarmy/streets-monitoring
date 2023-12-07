@@ -48,6 +48,19 @@ if __name__ == "__main__":
 
     if os.path.isdir(new_path):
         logger.info('Directory already exists')
+        os.mkdir(new_path)
+
+        for el in url:
+            # Split URL to get the file name
+            filename = el.split('/')[-1]
+
+            # Downloading the file by sending the request to the URL
+            req = requests.get(el)
+            logger.info('Downloading Completed')
+
+            # extracting the zip file contents
+            zipfile_ob= zipfile.ZipFile(BytesIO(req.content))
+            zipfile_ob.extractall(os.path.join(str(date.today()),'pure_str.gdb'))
     else:
         os.mkdir(new_path)
 
@@ -77,14 +90,14 @@ if __name__ == "__main__":
     # street_geom_0=gpd.read_file(os.path.join(previous_date,'pure_str.gdb'), layer="PURE_LIN")
     # street_geom_0_dup = street_geom_0.loc[street_geom_0.duplicated()]
     # street_geom_0 = street_geom_0.drop_duplicates('geometry')
-    street_name_0=pd.read_csv(os.path.join(previous_date,'pure_str.csv'),sep=';')
+    # street_name_0=pd.read_csv(os.path.join(previous_date,'pure_str.csv'),sep=';')
     # street_geom_name_0 = street_geom_0.merge(street_name_0,on=['STR_ESID'])
     
-    street_geom_1=gpd.read_file(os.path.join(str(date.today()),'pure_str.gdb'), layer="PURE_LIN")
-    street_geom_1_dup = street_geom_0.loc[street_geom_0.duplicated()]
-    street_geom_1 = street_geom_1.drop_duplicates('geometry')
-    street_name_1=pd.read_csv(os.path.join(str(date.today()),'pure_str.csv'), sep=';')
-    street_geom_name_1 = street_geom_1.merge(street_name_1,on=['STR_ESID'])
+    # street_geom_1=gpd.read_file(os.path.join(str(date.today()),'pure_str.gdb'), layer="PURE_LIN")
+    # street_geom_1_dup = street_geom_0.loc[street_geom_0.duplicated()]
+    # street_geom_1 = street_geom_1.drop_duplicates('geometry')
+    # street_name_1=pd.read_csv(os.path.join(str(date.today()),'pure_str.csv'), sep=';')
+    # street_geom_name_1 = street_geom_1.merge(street_name_1,on=['STR_ESID'])
 
         
     # logger.info('Joining geometries...')
