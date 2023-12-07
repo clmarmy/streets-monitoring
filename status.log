@@ -5,3 +5,6 @@
 2023-12-07 14:00:48,593 - __main__ - INFO - Token value: 1234
 2023-12-07 14:00:49,355 - __main__ - INFO - Weather in Berlin: 1.85
 2023-12-07 14:03:16,178 - __main__ - INFO - Downloading data and preparing file...
+2023-12-07 14:25:54,316 - __main__ - INFO - Downloading data and preparing file...
+2023-12-07 14:25:54,938 - __main__ - INFO - Downloading Completed
+2023-12-07 14:25:56,021 - __main__ - INFO - Downloading Completed
