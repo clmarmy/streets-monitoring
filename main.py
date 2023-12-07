@@ -33,19 +33,15 @@ except KeyError:
 
 if __name__ == "__main__":
     
-
-
-
     # DIR_IN='C:/Users/cmarmy/Documents/STDL/adresses/PURE/' 
     # url = ['https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/gdb/2056/ch.swisstopo.amtliches-strassenverzeichnis.zip',
     #        'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/csv/2056/ch.swisstopo.amtliches-strassenverzeichnis.zip'] # PURE
 
-    DIR_IN='C:/Users/cmarmy/Documents/STDL/adresses/STAC/'
     url = ['https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.gdb.zip',
         'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.csv.zip'] # STAC
 
     previous_date = '2023-12-07'
-    new_path = os.path.join(DIR_IN,str(date.today()))
+    new_path = os.path.join(str(date.today()))
 
 
     logger.info('Downloading data and preparing file...')
@@ -65,9 +61,9 @@ if __name__ == "__main__":
 
             # extracting the zip file contents
             zipfile_ob= zipfile.ZipFile(BytesIO(req.content))
-            zipfile_ob.extractall(os.path.join(DIR_IN,str(date.today())))
+            zipfile_ob.extractall(os.path.join(str(date.today())))
 
-    if os.path.isfile(os.path.join(DIR_IN,'recap.csv')):
+    if os.path.isfile(os.path.join('recap.csv')):
         logger.info('Recap CSV file already exists')
     else:
         with open(os.path.join(DIR_IN,'recap.csv'), 'w', newline='') as file:
