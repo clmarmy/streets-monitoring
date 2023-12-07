@@ -8,3 +8,6 @@
 2023-12-07 14:25:54,316 - __main__ - INFO - Downloading data and preparing file...
 2023-12-07 14:25:54,938 - __main__ - INFO - Downloading Completed
 2023-12-07 14:25:56,021 - __main__ - INFO - Downloading Completed
+2023-12-07 14:42:20,000 - __main__ - INFO - Downloading data and preparing file...
+2023-12-07 14:42:20,000 - __main__ - INFO - Directory already exists
+2023-12-07 14:42:20,000 - __main__ - INFO - Recap CSV file already exists
