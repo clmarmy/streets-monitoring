@@ -87,18 +87,18 @@ if __name__ == "__main__":
     street_geom_name_1 = street_geom_1.merge(street_name_1,on=['STR_ESID'])
 
         
-    logger.info('Joining geometries...')
+    # logger.info('Joining geometries...')
     
-    street_0_1_merge = street_geom_name_0.merge(street_geom_name_1, how='outer', on=['geometry'])
-    street_0_1_merge['ESID_diff'] = street_0_1_merge['STR_ESID_x']==street_0_1_merge['STR_ESID_y'] 
-    street_0_1_merge['LABEL_diff'] = street_0_1_merge['STN_LABEL_x']==street_0_1_merge['STN_LABEL_y'] 
+    # street_0_1_merge = street_geom_name_0.merge(street_geom_name_1, how='outer', on=['geometry'])
+    # street_0_1_merge['ESID_diff'] = street_0_1_merge['STR_ESID_x']==street_0_1_merge['STR_ESID_y'] 
+    # street_0_1_merge['LABEL_diff'] = street_0_1_merge['STN_LABEL_x']==street_0_1_merge['STN_LABEL_y'] 
     
-    previous = street_0_1_merge.loc[pd.isna(street_0_1_merge['STR_ESID_y'])]
-    new = street_0_1_merge.loc[pd.isna(street_0_1_merge['STR_ESID_x'])]
-    inner = street_0_1_merge.loc[pd.notna(street_0_1_merge['STR_ESID_x']) & pd.notna(street_0_1_merge['STR_ESID_y'])]
+    # previous = street_0_1_merge.loc[pd.isna(street_0_1_merge['STR_ESID_y'])]
+    # new = street_0_1_merge.loc[pd.isna(street_0_1_merge['STR_ESID_x'])]
+    # inner = street_0_1_merge.loc[pd.notna(street_0_1_merge['STR_ESID_x']) & pd.notna(street_0_1_merge['STR_ESID_y'])]
     
-    csv_row = [previous_date, date.today(), sum(street_0_1_merge['ESID_diff']==False), sum(street_0_1_merge['LABEL_diff']==False), 
-               sum(pd.isna(street_0_1_merge['STR_ESID_y'])), sum(pd.isna(street_0_1_merge['STR_ESID_x']))]
+    # csv_row = [previous_date, date.today(), sum(street_0_1_merge['ESID_diff']==False), sum(street_0_1_merge['LABEL_diff']==False), 
+    #            sum(pd.isna(street_0_1_merge['STR_ESID_y'])), sum(pd.isna(street_0_1_merge['STR_ESID_x']))]
 
 
 # logger.info('Writing file...')
