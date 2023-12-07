@@ -32,30 +32,23 @@ except KeyError:
 
 
 if __name__ == "__main__":
-    logger.info(f"Token value: {SOME_SECRET}")
-
-    r = requests.get('https://weather.talkpython.fm/api/weather/?city=Berlin&country=DE')
-    if r.status_code == 200:
-        data = r.json()
-        temperature = data["forecast"]["temp"]
-        logger.info(f'Weather in Berlin: {temperature}')
+    
 
 
 
+    # DIR_IN='C:/Users/cmarmy/Documents/STDL/adresses/PURE/' 
+    # url = ['https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/gdb/2056/ch.swisstopo.amtliches-strassenverzeichnis.zip',
+    #        'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/csv/2056/ch.swisstopo.amtliches-strassenverzeichnis.zip'] # PURE
 
-# # DIR_IN='C:/Users/cmarmy/Documents/STDL/adresses/PURE/' 
-# # url = ['https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/gdb/2056/ch.swisstopo.amtliches-strassenverzeichnis.zip',
-# #        'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/csv/2056/ch.swisstopo.amtliches-strassenverzeichnis.zip'] # PURE
+    DIR_IN='C:/Users/cmarmy/Documents/STDL/adresses/STAC/'
+    url = ['https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.gdb.zip',
+        'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.csv.zip'] # STAC
 
-# DIR_IN='C:/Users/cmarmy/Documents/STDL/adresses/STAC/'
-# url = ['https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.gdb.zip',
-#        'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.csv.zip'] # STAC
-
-# previous_date = '2023-12-07'
-# new_path = os.path.join(DIR_IN,str(date.today()))
+    previous_date = '2023-12-07'
+    new_path = os.path.join(DIR_IN,str(date.today()))
 
 
-# logger.info('Downloading data and preparing file...')
+    logger.info('Downloading data and preparing file...')
 
 # if os.path.isdir(new_path):
 #     logger.info('Directory already exists')
