@@ -50,30 +50,30 @@ if __name__ == "__main__":
 
     logger.info('Downloading data and preparing file...')
 
-# if os.path.isdir(new_path):
-#     logger.info('Directory already exists')
-# else:
-#     os.mkdir(new_path)
+    if os.path.isdir(new_path):
+        logger.info('Directory already exists')
+    else:
+        os.mkdir(new_path)
 
-#     for el in url:
-#         # Split URL to get the file name
-#         filename = el.split('/')[-1]
+        for el in url:
+            # Split URL to get the file name
+            filename = el.split('/')[-1]
 
-#         # Downloading the file by sending the request to the URL
-#         req = requests.get(el)
-#         logger.info('Downloading Completed')
+            # Downloading the file by sending the request to the URL
+            req = requests.get(el)
+            logger.info('Downloading Completed')
 
-#         # extracting the zip file contents
-#         zipfile_ob= zipfile.ZipFile(BytesIO(req.content))
-#         zipfile_ob.extractall(os.path.join(DIR_IN,str(date.today())))
+            # extracting the zip file contents
+            zipfile_ob= zipfile.ZipFile(BytesIO(req.content))
+            zipfile_ob.extractall(os.path.join(DIR_IN,str(date.today())))
 
-# if os.path.isfile(os.path.join(DIR_IN,'recap.csv')):
-#     logger.info('Recap CSV file already exists')
-# else:
-#     with open(os.path.join(DIR_IN,'recap.csv'), 'w', newline='') as file:
-#         my_header = ['previous_date', 'new_date', 'sum_ESID_diff','sum_LABEL_diff', 'sum_previous_ESID', 'sum_new_ESID']
-#         writer = csv.writer(file)
-#         writer.writerow(my_header) 
+    if os.path.isfile(os.path.join(DIR_IN,'recap.csv')):
+        logger.info('Recap CSV file already exists')
+    else:
+        with open(os.path.join(DIR_IN,'recap.csv'), 'w', newline='') as file:
+            my_header = ['previous_date', 'new_date', 'sum_ESID_diff','sum_LABEL_diff', 'sum_previous_ESID', 'sum_new_ESID']
+            writer = csv.writer(file)
+            writer.writerow(my_header) 
 
 
 # logger.info('Merging name on street...')
