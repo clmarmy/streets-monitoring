@@ -61,7 +61,7 @@ if __name__ == "__main__":
 
             # extracting the zip file contents
             zipfile_ob= zipfile.ZipFile(BytesIO(req.content))
-            zipfile_ob.extractall(os.path.join(str(date.today())))
+            zipfile_ob.extractall(os.path.join(str(date.today()),'pure_str.gdb'))
 
     if os.path.isfile(os.path.join('recap.csv')):
         logger.info('Recap CSV file already exists')
