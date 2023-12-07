@@ -66,7 +66,7 @@ if __name__ == "__main__":
     if os.path.isfile(os.path.join('recap.csv')):
         logger.info('Recap CSV file already exists')
     else:
-        with open(os.path.join(DIR_IN,'recap.csv'), 'w', newline='') as file:
+        with open(os.path.join('recap.csv'), 'w', newline='') as file:
             my_header = ['previous_date', 'new_date', 'sum_ESID_diff','sum_LABEL_diff', 'sum_previous_ESID', 'sum_new_ESID']
             writer = csv.writer(file)
             writer.writerow(my_header) 
