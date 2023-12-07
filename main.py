@@ -72,36 +72,33 @@ if __name__ == "__main__":
             writer.writerow(my_header) 
 
 
-        logger.info('Merging name on street...')
+    logger.info('Merging name on street...')
+    
+    street_geom_0=gpd.read_file(os.path.join(previous_date,'pure_str.gdb'), layer="PURE_LIN")
+    street_geom_0_dup = street_geom_0.loc[street_geom_0.duplicated()]
+    street_geom_0 = street_geom_0.drop_duplicates('geometry')
+    street_name_0=pd.read_csv(os.path.join(previous_date,'pure_str.csv'),sep=';')
+    street_geom_name_0 = street_geom_0.merge(street_name_0,on=['STR_ESID'])
+    
+    street_geom_1=gpd.read_file(os.path.join(str(date.today()),'pure_str.gdb'), layer="PURE_LIN")
+    street_geom_1_dup = street_geom_0.loc[street_geom_0.duplicated()]
+    street_geom_1 = street_geom_1.drop_duplicates('geometry')
+    street_name_1=pd.read_csv(os.path.join(str(date.today()),'pure_str.csv'), sep=';')
+    street_geom_name_1 = street_geom_1.merge(street_name_1,on=['STR_ESID'])
+
         
-        street_geom_0=gpd.read_file(os.path.join(previous_date,'pure_str.gdb'), layer="PURE_LIN")
-        street_geom_0_dup = street_geom_0.loc[street_geom_0.duplicated()]
-        street_geom_0 = street_geom_0.drop_duplicates('geometry')
-        street_name_0=pd.read_csv(os.path.join(previous_date,'pure_str.csv'),sep=';')
-        street_geom_name_0 = street_geom_0.merge(street_name_0,on=['STR_ESID'])
-        
-        street_geom_1=gpd.read_file(os.path.join(str(date.today()),'pure_str.gdb'), layer="PURE_LIN")
-        street_geom_1_dup = street_geom_0.loc[street_geom_0.duplicated()]
-        street_geom_1 = street_geom_1.drop_duplicates('geometry')
-        street_name_1=pd.read_csv(os.path.join(str(date.today()),'pure_str.csv'), sep=';')
-        street_geom_name_1 = street_geom_1.merge(street_name_1,on=['STR_ESID'])
-
-
-# logger.info('Joining geometries...')
-
-# dif = street_geom_name_0.difference(street_geom_name_1, align=True)
-# if sum(dif.is_empty) == len(dif):
-#     logger.info('The layer are geometricaly matching completely')
-# street_0_1_merge = street_geom_name_0.merge(street_geom_name_1, how='outer', on=['geometry'])
-# street_0_1_merge['ESID_diff'] = street_0_1_merge['STR_ESID_x']==street_0_1_merge['STR_ESID_y'] 
-# street_0_1_merge['LABEL_diff'] = street_0_1_merge['STN_LABEL_x']==street_0_1_merge['STN_LABEL_y'] 
-
-# previous = street_0_1_merge.loc[pd.isna(street_0_1_merge['STR_ESID_y'])]
-# new = street_0_1_merge.loc[pd.isna(street_0_1_merge['STR_ESID_x'])]
-# inner = street_0_1_merge.loc[pd.notna(street_0_1_merge['STR_ESID_x']) & pd.notna(street_0_1_merge['STR_ESID_y'])]
-
-# csv_row = [previous_date, date.today(), sum(street_0_1_merge['ESID_diff']==False), sum(street_0_1_merge['LABEL_diff']==False), 
-#            sum(pd.isna(street_0_1_merge['STR_ESID_y'])), sum(pd.isna(street_0_1_merge['STR_ESID_x']))]
+    logger.info('Joining geometries...')
+    
+    street_0_1_merge = street_geom_name_0.merge(street_geom_name_1, how='outer', on=['geometry'])
+    street_0_1_merge['ESID_diff'] = street_0_1_merge['STR_ESID_x']==street_0_1_merge['STR_ESID_y'] 
+    street_0_1_merge['LABEL_diff'] = street_0_1_merge['STN_LABEL_x']==street_0_1_merge['STN_LABEL_y'] 
+    
+    previous = street_0_1_merge.loc[pd.isna(street_0_1_merge['STR_ESID_y'])]
+    new = street_0_1_merge.loc[pd.isna(street_0_1_merge['STR_ESID_x'])]
+    inner = street_0_1_merge.loc[pd.notna(street_0_1_merge['STR_ESID_x']) & pd.notna(street_0_1_merge['STR_ESID_y'])]
+    
+    csv_row = [previous_date, date.today(), sum(street_0_1_merge['ESID_diff']==False), sum(street_0_1_merge['LABEL_diff']==False), 
+               sum(pd.isna(street_0_1_merge['STR_ESID_y'])), sum(pd.isna(street_0_1_merge['STR_ESID_x']))]
 
 
 # logger.info('Writing file...')
