@@ -20,7 +20,7 @@ jobs:
         run: |
           git config --global user.email "saintglinglins@gmail.com"
           git config --global user.name "clmarmy"
-          git rm -r data/$(date +%Y-%m-%d)
+          git rm -r data/$(date +%Y-%m-%d) # date -d "30 days ago" +"%d/%m/%Y"
           git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
           
       - name: push changes
