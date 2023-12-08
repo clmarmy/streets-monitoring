@@ -99,15 +99,15 @@ if __name__ == "__main__":
                sum(pd.isna(street_0_1_merge['STR_ESID_y'])), sum(pd.isna(street_0_1_merge['STR_ESID_x']))]
 
 
-# logger.info('Writing file...')
-
-# with open(os.path.join(DIR_IN,'recap.csv'), 'a') as file:
-#     writer = csv.writer(file)
-#     writer.writerow(csv_row)
-
-# street_geom_0_dup.to_file(os.path.join(DIR_IN,(previous_date+'_duplicate.gpkg')))
-# street_geom_1_dup.to_file(os.path.join(DIR_IN,(str(date.today())+'_duplicate.gpkg')))
-# street_0_1_merge.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_outer.gpkg')))
-# previous.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_previous.gpkg')))
-# new.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_new.gpkg')))
-# inner.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_inner.gpkg')))
+    logger.info('Writing file...')
+    
+    with open(os.path.join(DIR_IN,'recap.csv'), 'a') as file:
+        writer = csv.writer(file)
+        writer.writerow(csv_row)
+    
+    street_geom_0_dup.to_file(os.path.join(DIR_IN,(previous_date+'_duplicate.gpkg')))
+    street_geom_1_dup.to_file(os.path.join(DIR_IN,(str(date.today())+'_duplicate.gpkg')))
+    # street_0_1_merge.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_outer.gpkg')))
+    previous.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_previous.gpkg')))
+    new.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_new.gpkg')))
+    # inner.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_inner.gpkg')))
