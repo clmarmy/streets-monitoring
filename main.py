@@ -6,6 +6,7 @@ import requests
 from io import BytesIO
 import zipfile
 from datetime import date
+from datetime import timedelta
 import geopandas as gpd
 import pandas as pd
 import csv
@@ -33,15 +34,12 @@ except KeyError:
 
 if __name__ == "__main__":
     
-    # DIR_IN='C:/Users/cmarmy/Documents/STDL/adresses/PURE/' 
-    # url = ['https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/gdb/2056/ch.swisstopo.amtliches-strassenverzeichnis.zip',
-    #        'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/csv/2056/ch.swisstopo.amtliches-strassenverzeichnis.zip'] # PURE
-
     url = ['https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.gdb.zip',
         'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.csv.zip'] # STAC
 
-    previous_date = '2023-12-07'
-    new_path = os.path.join(str(date.today()),'pure_str.gdb')
+    DIR_IN = 'C:/Users/cmarmy/Documents/STDL/adresses/actions-test/data'
+    previous_date = '2023-12-08' # date.today()-timedelta(days = 1)
+    new_path = os.path.join(DIR_IN,str(date.today()))
 
 
     logger.info('Downloading data and preparing file...')
@@ -52,21 +50,21 @@ if __name__ == "__main__":
         os.mkdir(new_path)
 
         for el in url:
-            # Split URL to get the file name
-            filename = el.split('/')[-1]
-
             # Downloading the file by sending the request to the URL
             req = requests.get(el)
             logger.info('Downloading Completed')
 
+            if ('gdb' in el.split('/')[-1]):
+                open(os.path.join(DIR_IN,str(date.today()),'gdb.zip'), 'wb').write(req.content)
+            else:
             # extracting the zip file contents
-            zipfile_ob= zipfile.ZipFile(BytesIO(req.content))
-            zipfile_ob.extractall(os.path.join(str(date.today()),'pure_str.gdb'))
+                zipfile_ob= zipfile.ZipFile(BytesIO(req.content))
+                zipfile_ob.extractall(os.path.join(DIR_IN,str(date.today())))
 
-    if os.path.isfile(os.path.join('recap.csv')):
+    if os.path.isfile(os.path.join(DIR_IN,'recap.csv')):
         logger.info('Recap CSV file already exists')
     else:
-        with open(os.path.join('recap.csv'), 'w', newline='') as file:
+        with open(os.path.join(DIR_IN,'recap.csv'), 'w', newline='') as file:
             my_header = ['previous_date', 'new_date', 'sum_ESID_diff','sum_LABEL_diff', 'sum_previous_ESID', 'sum_new_ESID']
             writer = csv.writer(file)
             writer.writerow(my_header) 
@@ -74,16 +72,16 @@ if __name__ == "__main__":
 
     logger.info('Merging name on street...')
     
-    street_geom_0=gpd.read_file(os.path.join(previous_date,'pure_str.gdb'), layer="PURE_LIN")
+    street_geom_0=gpd.read_file(os.path.join(DIR_IN,previous_date,'gdb.zip')+'!pure_str.gdb', layer="PURE_LIN")
     street_geom_0_dup = street_geom_0.loc[street_geom_0.duplicated()]
     street_geom_0 = street_geom_0.drop_duplicates('geometry')
-    street_name_0=pd.read_csv(os.path.join(previous_date,'pure_str.csv'),sep=';')
+    street_name_0=pd.read_csv(os.path.join(DIR_IN,previous_date,'pure_str.csv'),sep=';')
     street_geom_name_0 = street_geom_0.merge(street_name_0,on=['STR_ESID'])
-    
-    street_geom_1=gpd.read_file(os.path.join(str(date.today()),'pure_str.gdb'), layer="PURE_LIN")
+
+    street_geom_1=gpd.read_file(os.path.join(DIR_IN,str(date.today()),'gdb.zip')+'!pure_str.gdb', layer="PURE_LIN")
     street_geom_1_dup = street_geom_0.loc[street_geom_0.duplicated()]
     street_geom_1 = street_geom_1.drop_duplicates('geometry')
-    street_name_1=pd.read_csv(os.path.join(str(date.today()),'pure_str.csv'), sep=';')
+    street_name_1=pd.read_csv(os.path.join(DIR_IN,str(date.today()),'pure_str.csv'), sep=';')
     street_geom_name_1 = street_geom_1.merge(street_name_1,on=['STR_ESID'])
 
         
