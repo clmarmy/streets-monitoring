@@ -1,6 +1,9 @@
 name: run main.py
 
-on: workflow_dispatch
+on:
+    schedule:
+        - cron: '50 9 * * *'
+    workflow_dispatch:
 
 
 jobs:
