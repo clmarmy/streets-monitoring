@@ -20,7 +20,7 @@ jobs:
         run: |
           git config --global user.email "saintglinglins@gmail.com"
           git config --global user.name "clmarmy"
-          git rm -r data/$(date +%Y-%m-%d) # date -d "30 days ago" +"%d/%m/%Y"
+          git rm -r data/$(date -d "30 days ago" +%Y-%m-%d") 
           git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
           
       - name: push changes
@@ -28,3 +28,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main 
+
+# git rm -r data/$(date +%Y-%m-%d) # 

@@ -38,7 +38,7 @@ if __name__ == "__main__":
         'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.csv.zip'] # STAC
 
     DIR_IN = 'data'
-    previous_date = str(date.today()) #-timedelta(days = 3)
+    previous_date = str(date.today()-timedelta(days = 3))
     new_path = os.path.join(DIR_IN,str(date.today()))
 
 
