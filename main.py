@@ -37,7 +37,7 @@ if __name__ == "__main__":
     url = ['https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.gdb.zip',
         'https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/amtliches-strassenverzeichnis_2056.csv.zip'] # STAC
 
-    DIR_IN = 'C:/Users/cmarmy/Documents/STDL/adresses/actions-test/data'
+    DIR_IN = 'data'
     previous_date = '2023-12-08' # date.today()-timedelta(days = 1)
     new_path = os.path.join(DIR_IN,str(date.today()))
 
