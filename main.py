@@ -79,7 +79,7 @@ if __name__ == "__main__":
     street_geom_name_0 = street_geom_0.merge(street_name_0,on=['STR_ESID'])
 
     street_geom_1=gpd.read_file(os.path.join(DIR_IN,str(date.today()),'gdb.zip')+'!pure_str.gdb', layer="PURE_LIN")
-    street_geom_1_dup = street_geom_0.loc[street_geom_0.duplicated()]
+    street_geom_1_dup = street_geom_1.loc[street_geom_1.duplicated()]
     street_geom_1 = street_geom_1.drop_duplicates('geometry')
     street_name_1=pd.read_csv(os.path.join(DIR_IN,str(date.today()),'pure_str.csv'), sep=';')
     street_geom_name_1 = street_geom_1.merge(street_name_1,on=['STR_ESID'])
