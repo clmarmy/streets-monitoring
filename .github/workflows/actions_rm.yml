@@ -2,7 +2,7 @@ name: delete previous files
 
 on:
     schedule:
-        - cron: '50 23 * * mon'
+        - cron: '50 9 * * tue'
     workflow_dispatch:
 
 
@@ -20,7 +20,7 @@ jobs:
         run: |
           git config --global user.email "saintglinglins@gmail.com"
           git config --global user.name "clmarmy"
-          git rm -r data/$(date -d "30 days ago" +%Y-%m-%d") 
+          git rm -r data/$(date -d "4 days ago" +%Y-%m-%d") 
           git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
           
       - name: push changes
