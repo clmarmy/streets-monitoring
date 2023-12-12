@@ -105,7 +105,7 @@ if __name__ == "__main__":
         writer = csv.writer(file)
         writer.writerow(csv_row)
     
-    street_geom_0_dup.to_file(os.path.join(DIR_IN,(previous_date+'_duplicate.gpkg')))
+    # street_geom_0_dup.to_file(os.path.join(DIR_IN,(previous_date+'_duplicate.gpkg')))
     street_geom_1_dup.to_file(os.path.join(DIR_IN,(str(date.today())+'_duplicate.gpkg')))
     # street_0_1_merge.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_outer.gpkg')))
     previous.to_file(os.path.join(DIR_IN,(previous_date+'_'+str(date.today())+'_previous.gpkg')))
