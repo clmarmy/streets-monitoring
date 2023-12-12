@@ -1,5 +1,5 @@
 # actions-test
-Script to monitor addresses.
+This GitHub repo documents changes between the yesterday and today streets and adresses downloaded from official STAC repo: https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/.
 
 ## Hardware requirements
 No specific requirements. 
@@ -10,29 +10,25 @@ No specific requirements.
 ## Folder structure
 
 ```
-├── .github                       # 
+├── .github                       # actions directory
   └── workflows
-      ├── actions.yml             #  
-      └── actions_rm.yml          # 
+      ├── actions.yml             # action downloading and processing the data
+      └── actions_rm.yml          # action deleting old downloads
 ├── data
-   ├── YYYY-MM-DD
-      ├── output files            #  
-      ├── .gdb                    # 
-      └── .csv                    # 
-├──.gitignore                     # 
-├── README.md                     # 
-├── main.py                       # 
-└── requirements.txt              # 
-└── status.log                    # 
+   ├── YYYY-MM-DD                 # data folder
+      ├── output files            # output files after processing
+      ├── .gdb                    # GDB with geometries and ESID
+      └── .csv                    # CSV with data attributes                     # 
+├── main.py                       # processing scripts run during GitHub action
+└── requirements.txt              # library used by GitHub action to build the python environnement 
+└── status.log                    # Stauts log from runs
 ```
 
 ## Scripts and Procedure
-
-This repo documents changes between the data downloaded yesterday and today from STAC (https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/).
 The script makes a join between the GDBs of the two dates. The join is based on the geometries, which must be strictly identical to be joined.
-In the CSV, there is a summary of changes between two dates:
-* previous_date: e.g. yesterday
-* new_date: e.g. today
+In the CSV, there is a summary of changes between the two dates:
+* previous_date: yesterday
+* new_date: today
 * sum_ESID_diff: number of ESIDs that differ
 * sum_LABEL_diff: number of different address labels
 * sum_previous_ESID: the number of geometries/routes/addresses that only exist in the GDB of the previous_date
