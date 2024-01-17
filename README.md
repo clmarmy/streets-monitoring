@@ -1,4 +1,4 @@
-# actions-test
+# streets-monitoring
 This GitHub repo documents changes between the yesterday and today streets and adresses downloaded from official STAC repo: https://data.geo.admin.ch/ch.swisstopo.amtliches-strassenverzeichnis/amtliches-strassenverzeichnis/.
 
 ## Hardware requirements
