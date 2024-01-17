@@ -20,13 +20,14 @@ No specific requirements.
       └── .csv                    # CSV with data attributes                     
   └── *output files               # output files after processing
 ├── main.py                       # processing scripts run during GitHub action
+├── recap.csv                     # CSV with monitoring overview
 ├── requirements.txt              # libraries used by GitHub action to build the python environnement 
 └── status.log                    # Stauts log from runs
 ```
 
 ## Scripts and Procedure
 The script makes a join between the GDBs of yesterday and today. The join is based on the geometries, which must be strictly identical to be joined.
-In the CSV, there is a summary of changes between the two dates:
+In recap.CSV, there is a summary of changes between the two dates:
 * previous_date: yesterday
 * new_date: today
 * sum_ESID_diff: number of ESIDs that differ

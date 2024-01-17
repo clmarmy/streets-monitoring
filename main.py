@@ -61,10 +61,10 @@ if __name__ == "__main__":
                 zipfile_ob= zipfile.ZipFile(BytesIO(req.content))
                 zipfile_ob.extractall(os.path.join(DIR_IN,str(date.today())))
 
-    if os.path.isfile(os.path.join(DIR_IN,'recap.csv')):
+    if os.path.isfile('recap.csv'):
         logger.info('Recap CSV file already exists')
     else:
-        with open(os.path.join(DIR_IN,'recap.csv'), 'w', newline='') as file:
+        with open('recap.csv', 'w', newline='') as file:
             my_header = ['previous_date', 'new_date', 'sum_ESID_diff','sum_LABEL_diff', 'sum_previous_ESID', 'sum_new_ESID']
             writer = csv.writer(file)
             writer.writerow(my_header) 
@@ -101,7 +101,7 @@ if __name__ == "__main__":
 
     logger.info('Writing file...')
     
-    with open(os.path.join(DIR_IN,'recap.csv'), 'a') as file:
+    with open('recap.csv', 'a') as file:
         writer = csv.writer(file)
         writer.writerow(csv_row)
     
